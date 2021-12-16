@@ -4,7 +4,7 @@
 This project is created on **December 16, 2021**
 
 ### Project Title
-**Post "bikeshare.py" on Github**
+**Post _bikeshare.py_ on Github**
 
 ### Description
 The project mainly aims at **Exploring** and _computing_ various statistics of the bike sharing system data corresponding to the requested city, month(s) and day(s) within a timestamp spanning from January to June 2017
