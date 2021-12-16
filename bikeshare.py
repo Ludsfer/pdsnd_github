@@ -52,35 +52,50 @@ def get_filters_load():
             user_input = input().lower()
             continue
         
+        
         city['Start Time'] = pd.to_datetime(city['Start Time'])  # convert attribute to a datatime like
         city['month'] = city['Start Time'].dt.month_name()  # name months in the selected city
         city['day_of_week'] = city['Start Time'].dt.day_name()  # name days in the selected city
             
+            
         month = input('Select month to display (january, february, ... , june), \'all\' to view all the months: ').lower().title()
         months = list(city['month'].unique())   # make a list of available month having data in the selected city
             
-        if (month != 'All') and (month in months):
+        while month:
+            if month in months:
                  
-            day = input('Select a day of week (monday, tuesday, ... , sunday), \'all\' to view all week days: ').lower().title()
-            days = list(city['day_of_week'].unique()) # make a list of available days having data in the selected city
+                day = input('Select a day of week (monday, tuesday, ... , sunday), \'all\' to view all week days: ').lower().title()
+                days = list(city['day_of_week'].unique()) # make a list of available days having data in the selected city
                 
-            if (day != 'All') and (day in days):
-                city = city[city['month'] == month] # intermediate result trimming by the selected month
-                return city[city['day_of_week'] == day] # trim the intermediate result by the day
+                while day:
+                    if day in days:
+                        
+                        city = city[city['month'] == month] # intermediate result trimming by the selected month
+                        return city[city['day_of_week'] == day] # trim the intermediate result by the day
+                    
+                    elif day == 'All':
+                        return city[city['month'] == month]
+            
+                    else:
+                        day = input('\nSelected day unavailable.\nSelect (monday, tuesday, ... , sunday), \'all\' to view all week days: ').lower().title()
+                        continue        
+            
+            elif month == 'All':
                 
+                day = input('Select a day of week (monday, tuesday, ... , sunday), \'all\' to view all week days: ').lower().title()
+                days = list(city['day_of_week'].unique()) # make a list of available days having data in the selected city
+                
+                while day:
+                    if day in days:
+                        return city[city['day_of_week'] == day] # trim by the selected day
+            
+                    else:
+                        day = input('\nSelected day unavailable.\nSelect (monday, tuesday, ... , sunday), \'all\' to view all week days: ').lower().title()
+                        continue 
+                    
             else:
-                print(f'\nThe selected city does not have data for day \'{day}\' in \'{month}\'.')
-                print('Loaded is the data of all the week_days contained in the month of \'{}\'.'.format(month))
-                return city[city['month'] == month]      
-        else:
-            print('Loaded is the data of all the months contained in the city')
-            return city
-        
-    else:
-        print("\nOops, '{}' cannot be found in the dictionary of cities.".format(user_input))
-        print("Please enter 'chicago' or 'new york city' or 'washington' to proceed with the statistics: ")
-        user_input = input().lower()
-
+                month = input('\nThe selected month is unavailable.\nSelect month to display (january, february, ... , june), \'all\' to view all the months: ').lower().title()
+                continue   
 
 
 
