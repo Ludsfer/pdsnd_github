@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 
 
-pd.set_option('display.max_columns', 10)  # coerce all the available columns so that the output prints only ten columns 
+pd.set_option('display.max_columns', 10)  # truncate all the available columns, if exceed 10 so that the output prints only ten columns, the first and the last five column 
 pd.set_option('display.width', 1000)
 
 
