@@ -11,6 +11,7 @@ CITY_DATA = { 'chicago': 'chicago.csv',
               'new york city': 'new_york_city.csv',
               'washington': 'washington.csv' }
 
+Short_city = ['ch','ny','wa']  # short - named available cities with 'ch' for 'chicago', 'ny' for 'new york city' and 'wa' for 'washington' 
 
 def get_filters_load():
     """
@@ -22,41 +23,63 @@ def get_filters_load():
         (str) day - name of the day of week to filter by, or "all" to apply no day filter
     """
     print('Hello! Let\'s explore some US bikeshare data!')
-    user_input = input("\nEnter 'chicago' or 'new york city' or 'washington' to load the available data for the analysis: ").lower()
+    user_input = input("\nEnter \n'CH' or 'chicago'\n'NY' or 'new york city'\n'WA' for 'washington' to load the available data for the analysis: ").lower()
     
-    while True:
-        if  user_input in CITY_DATA.keys():
-            city = pd.read_csv(CITY_DATA[user_input])  # load data corresponding to the city selected 
+    while user_input:
+        city = ''
+        if  user_input in Short_city:
+            
+            if user_input == 'ny':
+                user_input = 'new york city'
+                city = pd.read_csv(CITY_DATA[user_input])  # load data corresponding to the city selected 
+                
+            elif user_input == 'ch':
+                user_input = 'chicago'
+                city = pd.read_csv(CITY_DATA[user_input])  # load data corresponding to the city selected 
+                
+            elif user_input == 'wa':
+                user_input = 'washington'
+                city = pd.read_csv(CITY_DATA[user_input])  # load data corresponding to the city selected 
             city.dropna(axis = 0, inplace = True)  # remove the nan in the city's data
             
-            city['Start Time'] = pd.to_datetime(city['Start Time'])  # convert attribute to a datatime like
-            city['month'] = city['Start Time'].dt.month_name()  # name months in the selected city
-            city['day_of_week'] = city['Start Time'].dt.day_name()  # name days in the selected city
-            
-            month = input('Select month to display (january, february, ... , june), \'all\' to view all the months: ').lower().title()
-            months = list(city['month'].unique())   # make a list of available month having data in the selected city
-            
-            if (month != 'All') and (month in months):
-                 
-                day = input('Select a day of week (monday, tuesday, ... , sunday), \'all\' to view all week days: ').lower().title()
-                days = list(city['day_of_week'].unique()) # make a list of available days having data in the selected city
-                
-                if (day != 'All') and (day in days):
-                    city = city[city['month'] == month] # intermediate result trimming by the selected month
-                    return city[city['day_of_week'] == day] # trim the intermediate result by the day
-                
-                else:
-                    print(f'\nThe selected city does not have data for day \'{day}\' in \'{month}\'.')
-                    print('Loaded is the data of all the week_days contained in the month of \'{}\'.'.format(month))
-                    return city[city['month'] == month]      
-            else:
-                print('Loaded is the data of all the months contained in the city')
-                return city
+        elif user_input in CITY_DATA.keys():
+            city = pd.read_csv(CITY_DATA[user_input])
+            city.dropna(axis = 0, inplace = True)
         
         else:
             print("\nOops, '{}' cannot be found in the dictionary of cities.".format(user_input))
-            print("Please enter 'chicago' or 'new york city' or 'washington' to proceed with the statistics: ")
+            print("Enter \n'CH' or 'chicago'\n'NY' or 'new york city'\n'WA' for 'washington' to load the available data for the analysis: ")
             user_input = input().lower()
+            continue
+        
+        city['Start Time'] = pd.to_datetime(city['Start Time'])  # convert attribute to a datatime like
+        city['month'] = city['Start Time'].dt.month_name()  # name months in the selected city
+        city['day_of_week'] = city['Start Time'].dt.day_name()  # name days in the selected city
+            
+        month = input('Select month to display (january, february, ... , june), \'all\' to view all the months: ').lower().title()
+        months = list(city['month'].unique())   # make a list of available month having data in the selected city
+            
+        if (month != 'All') and (month in months):
+                 
+            day = input('Select a day of week (monday, tuesday, ... , sunday), \'all\' to view all week days: ').lower().title()
+            days = list(city['day_of_week'].unique()) # make a list of available days having data in the selected city
+                
+            if (day != 'All') and (day in days):
+                city = city[city['month'] == month] # intermediate result trimming by the selected month
+                return city[city['day_of_week'] == day] # trim the intermediate result by the day
+                
+            else:
+                print(f'\nThe selected city does not have data for day \'{day}\' in \'{month}\'.')
+                print('Loaded is the data of all the week_days contained in the month of \'{}\'.'.format(month))
+                return city[city['month'] == month]      
+        else:
+            print('Loaded is the data of all the months contained in the city')
+            return city
+        
+    else:
+        print("\nOops, '{}' cannot be found in the dictionary of cities.".format(user_input))
+        print("Please enter 'chicago' or 'new york city' or 'washington' to proceed with the statistics: ")
+        user_input = input().lower()
 
 
 
