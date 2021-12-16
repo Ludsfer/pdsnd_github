@@ -1,7 +1,7 @@
 >**Note**: Please **fork** the current Udacity repository so that you will have a **remote** repository in **your** Github account. Clone the remote repository to your local machine. Later, as a part of the project "Post your Work on Github", you will push your proposed changes to the remote repository in your Github account.
 
 ### Date created
-This project is created on the **December 16, 2021**
+This project is created on **December 16, 2021**
 
 ### Project Title
 **Post "bikeshare.py" on Github**
@@ -31,8 +31,6 @@ For the building up my project, I came accross several **invaluable** _sources_.
 - [NumPy documentation](https://numpy.org/devdocs/index.html) - Version: 1.23.dev0
 - [Markdown Cheat Sheet](https://wordpress.com/support/markdown-quick-reference/) - WordPress Markdown Quick Reference Cheat Sheet
 
-
-
 In conducting some more advanced computations, I Installed and made use of packages and their dependencies.
 
 ##### Installation
@@ -40,6 +38,7 @@ In conducting some more advanced computations, I Installed and made use of packa
 conda install numpy
 conda install pandas
 ```
+
 ##### Import libraries into the work environment
 ```sh
 import time
@@ -50,7 +49,6 @@ import numpy as np
 ## License
 Copyright 
 JOSEPH KOSSI DESSOUASSI
-
 
 
 [//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
