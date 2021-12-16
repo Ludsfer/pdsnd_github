@@ -123,7 +123,6 @@ def display(filtered_data, size = 5):
             i += size
             
     print('-'*40)       
- 
 
 
 
@@ -151,7 +150,6 @@ def time_stats(filtered_data):
 
 
 
-
 def station_stats(filtered_data):
     """Displays statistics on the most popular stations and trip."""
 
@@ -174,9 +172,7 @@ def station_stats(filtered_data):
     print(station)
     print('-'*10)
    
-
     # Display most frequent combination of start station and end station trip
-    
     start_end = {} # create an empty dictionary
     combination_StartEnd = zip(filtered_data['Start Station'], filtered_data['End Station'])
     for key in combination_StartEnd:
@@ -197,7 +193,6 @@ def station_stats(filtered_data):
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
-    
     
     
     
@@ -229,10 +224,8 @@ def user_stats(filtered_data):
         print(f"The most recent year of birth: {Recent_Birthyear} ")
         print(f"The most common year of birth: {Common_Birthyear} ")
     
-    
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
-
 
 
 
@@ -253,7 +246,6 @@ def trip_duration_stats(filtered_data):
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
     
-
     
     
 def length_station(filtered_data):
@@ -283,7 +275,6 @@ def length_station(filtered_data):
     
     
     
-    
 def compose_code(filtered_data):
     """set up a code composed of the first three letters of the User Type, month and day_of_week\n and check for the number of possibe combination in the data loaded"""
     
@@ -303,7 +294,6 @@ def compose_code(filtered_data):
     
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
-
     
 
 
@@ -327,7 +317,6 @@ def start_with(filtered_data):
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
-    
     
     
     
@@ -366,7 +355,6 @@ def GenderTrip_Uniformity(filtered_data):
        
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
-    
     
     
     
